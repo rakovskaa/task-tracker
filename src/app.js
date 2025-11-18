@@ -14,6 +14,6 @@ app.get('/', (req, res) => {
 
 });
 
-app.use('/task_tracker', taskRoutes);
+app.use('/tasks', taskRoutes);
 
 module.exports = app;
