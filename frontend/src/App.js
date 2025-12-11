@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState('');
@@ -13,7 +15,7 @@ function App() {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch('http://localhost:3000/tasks');
+      const response = await fetch(`${API_URL}/tasks`);
       const data = await response.json();
       setTasks(data);
     } catch (err) {
@@ -24,7 +26,7 @@ function App() {
   const addTask = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/tasks', {
+      const response = await fetch(`${API_URL}/tasks`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, description })
@@ -40,7 +42,7 @@ function App() {
 
   const toggleComplete = async (id, completed) => {
     try {
-      const response = await fetch(`http://localhost:3000/tasks/${id}`, {
+      const response = await fetch(`${API_URL}/tasks/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ completed: !completed })
@@ -54,7 +56,7 @@ function App() {
 
   const deleteTask = async (id) => {
     try {
-      await fetch(`http://localhost:3000/tasks/${id}`, {
+      await fetch(`${API_URL}/tasks/${id}`, {
         method: 'DELETE'
       });
       setTasks(tasks.filter(task => task.id !== id));

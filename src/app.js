@@ -5,7 +5,12 @@ const taskRoutes = require('./routes/tasks');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://task-tracker-frontend.onrender.com',
+    'http://localhost:3001'
+  ]
+}));
 app.use(express.json());
 
 // Routes
