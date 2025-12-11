@@ -7,7 +7,7 @@ const app = express();
 // Middleware
 app.use(cors({
   origin: [
-    'https://task-tracker-frontend.onrender.com',
+    'https://alena-task-tracker.netlify.app', 
     'http://localhost:3001'
   ]
 }));
